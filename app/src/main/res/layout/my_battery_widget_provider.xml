@@ -1,0 +1,42 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/widget_background"
+    android:orientation="vertical"
+    android:padding="@dimen/widget_margin">
+
+    <ImageView
+        android:id="@+id/charge"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_above="@+id/battery"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/charge" />
+
+    <TextView
+        android:id="@+id/battery"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/battery_bar"
+        android:layout_marginBottom="5dp"
+        android:gravity="center"
+        android:textColor="@color/battery_text"
+        android:textSize="22sp"
+        tools:text="5%" />
+
+    <ProgressBar
+        android:id="@+id/battery_bar"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="10dp"
+        android:progressBackgroundTint="@color/progress_bg"
+        android:progressTint="@color/progress_fg" />
+
+</RelativeLayout>
