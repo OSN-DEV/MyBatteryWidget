@@ -25,33 +25,22 @@ class BatteryJobService : JobService() {
                 }.build()
         }
     }
+    private val tag = MyBatteryWidgetProvider::class.simpleName ?: ""
 
     override fun onStopJob(params: JobParameters?): Boolean {
-//        jobFinished(params, false)
+        Log.d(tag, "onStopJob")
         return false
     }
 
     override fun onStartJob(params: JobParameters?): Boolean {
+        Log.d(tag, "onStartJob")
         Thread(Runnable {
-            Log.d("#####", "##### onStartJob")
-
-            // ウィジェットを更新
             val intent = Intent(this, MyBatteryWidgetProvider::class.java)
             intent.action = AppWidgetManager.ACTION_APPWIDGET_UPDATE
             val ids = AppWidgetManager.getInstance(application).getAppWidgetIds(ComponentName(application, MyBatteryWidgetProvider::class.java))
             intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids)
             sendBroadcast(intent)
-
-//            jobFinished(params, false)
-//
-//            // 次のジョブを開始
-//            val scheduler = getSystemService(Context.JOB_SCHEDULER_SERVICE) as JobScheduler
-//            if (null != params) {
-//                scheduler.schedule(BatteryJobServiceFactory(this.applicationContext, params.jobId, 0))
-//            }
         }).start()
-
         return false
     }
-
 }
